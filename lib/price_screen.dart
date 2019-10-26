@@ -74,23 +74,22 @@ class _PriceScreenState extends State<PriceScreen> {
     getData();
   }
 
-  ////For bonus points, create a method that loops through the cryptoList and generates a CryptoCard for each. Call makeCards() in the build() method instead of the Column with 3 CryptoCards.
-//  Column makeCards() {
-//    List<CryptoCard> cryptoCards = [];
-//    for (String crypto in cryptoList) {
-//      cryptoCards.add(
-//        CryptoCard(
-//          cryptoCurrency: crypto,
-//          selectedCurrency: selectedCurrency,
-//          value: isWaiting ? '?' : coinValues[crypto],
-//        ),
-//      );
-//    }
-//    return Column(
-//      crossAxisAlignment: CrossAxisAlignment.stretch,
-//      children: cryptoCards,
-//    );
-//  }
+  Column makeCards() {
+    List<CryptoCard> cryptoCards = [];
+    for (String crypto in cryptoList) {
+      cryptoCards.add(
+        CryptoCard(
+          cryptoCurrency: crypto,
+          selectedCurrency: selectedCurrency,
+          value: isWaiting ? '?' : coinValues[crypto],
+        ),
+      );
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: cryptoCards,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,26 +101,7 @@ class _PriceScreenState extends State<PriceScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              CryptoCard(
-                cryptoCurrency: 'BTC',
-                value: isWaiting ? '?' : coinValues['BTC'],
-                selectedCurrency: selectedCurrency,
-              ),
-              CryptoCard(
-                cryptoCurrency: 'ETH',
-                value: isWaiting ? '?' : coinValues['ETH'],
-                selectedCurrency: selectedCurrency,
-              ),
-              CryptoCard(
-                cryptoCurrency: 'LTC',
-                value: isWaiting ? '?' : coinValues['LTC'],
-                selectedCurrency: selectedCurrency,
-              ),
-            ],
-          ),
+          makeCards(),
           Container(
             height: 150.0,
             alignment: Alignment.center,
